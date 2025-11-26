@@ -292,26 +292,6 @@ nav {
   position: relative;
   justify-content: center;
 }
-/* .cube {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-.cube.show {
-  opacity: 1;
-}
-.cube {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  position: relative;
-
-  /* Start invisible */
-/* opacity: 0; */
-
-/* Show cube after 2 seconds */
-/* animation: autoRotate 12s linear infinite;
-  animation-delay: 2s;
-  transition: opacity 1.2s ease; */
 
 @keyframes showCube {
   to {
@@ -320,26 +300,10 @@ nav {
 }
 
 .cube {
-  opacity: 0;
-  animation: 12s linear infinite;
-  animation-delay: 2s;
-  transition: opacity 1.5s ease;
-  animation-fill-mode: both;
-}
-
-.cube {
   /* opacity: 0; */
-  animation: showCube 1.5s ease forwards, 12s linear autoRotate infinite 2s;
+  animation: showCube 1.5s ease forwards, 12s linear infinite 2s;
 }
 
-/* @keyframes autoRotate {
-  from {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
-} */
 .face {
   position: absolute;
   width: 240px;
@@ -351,7 +315,8 @@ nav {
   border: 2px solid rgba(0, 200, 255, 0.4);
   border-radius: 20px;
   font-size: 2rem;
-  /* backdrop-filter: blur(10px); */
+  backdrop-filter: blur(10px);
+  font-weight: bold;
 }
 
 /* Hero Section */
@@ -393,6 +358,15 @@ nav {
 
 .typing {
   margin-top: 10px;
+  font-size: 1.3rem;
+  border-right: 2px solid #0ea5e9;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  animation: blink 0.7s infinite;
+}
+
+.typingSkills {
   font-size: 1.3rem;
   border-right: 2px solid #0ea5e9;
   white-space: nowrap;

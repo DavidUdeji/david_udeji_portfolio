@@ -110,69 +110,69 @@ setTimeout(() => {
 
 // Typing text
 const typingElement = document.querySelector(".typing");
+const faces = document.querySelector(".typingSkills");
+const skills = [
+  "HTML",
+  "CSS",
+  "JAVASCRIPT",
+  "REACT",
+  "NEXT",
+  "NODE JS",
+  "API DESIGN",
+];
+
+let faceIndex = 0;
+let skillIndex = 0;
+let typingSpeed = 120;
+let delayBetweenSkills = 1000;
 const text = "Software Developer • Frontend Specialist";
 let index = 0;
+
+function typeText(text, element, callback) {
+  element.textContent = "";
+  let i = 0;
+
+  let typer = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i === text.length) {
+      clearInterval(typer);
+      setTimeout(callback, delayBetweenSkills);
+    }
+  }, typingSpeed);
+}
+
+function startTyping() {
+  let currentFace = faces[faceIndex];
+  let currentSkill = skills[skillIndex];
+
+  // clear alll faces first
+  // faces.forEach((f) => (f.textContent = ""));
+
+  // Type on the current face
+  typeText(currentSkill, currentFace, () => {
+    // Move to next skills and face
+    skillIndex = (skillIndex + 1) % skills.length;
+    faceIndex = (faceIndex + 1) % faces.length;
+    faces.textContent = currentSkill;
+
+    startTyping();
+  });
+}
+// Start animation
+startTyping();
 
 function typeLetters() {
   typingElement.textContent = text.slice(0, index);
   index++;
+  // let currentSkill = skills[skillIndex];
+  // skillIndex = (skillIndex + 1) % skills.length;
+  // faceIndex = (faceIndex + 1) % faces.length;
+  // faces.textContent = currentSkill;
 
   if (index <= text.length) {
-    setTimeout(typeLetters, 200); // typing speed
+    setTimeout(typeLetters, 300); // typing speed
   }
 }
 
 setTimeout(typeLetters, 1500); // wait 1.5 sec before typing starts
-// get all faces element
-const faces = [];
-const face1 = document.getElementById("face1");
-const face2 = document.getElementById("face2");
-const face3 = document.getElementById("face3");
-const face4 = document.getElementById("face4");
-const face5 = document.getElementById("face5");
-const face6 = document.getElementById("face6");
-
-const cube = document.getElementById("cube");
-
-faces.push(face1, face2, face3, face4, face5, face6);
-
-// function CircularQueue(capacity) {
-//   this.faces = faces;
-//   this.queue = new Array(faces);
-//   this.front = 0;
-//   this.rear = -1;
-//   this.size = 0;
-// }
-// // Add element
-// enqueue(){
-//   if(this.isFull()){
-//     console.log("Queue is full")
-//     return false
-//   }
-
-//   // Move rear pointer circularly
-// this.rear = (this.rear + 1) % this.faces;
-// this.queue[this.rear] = [...faces];
-// this.size++;
-// return true
-// }
-
-// dequeue(){
-//   if(this.isEmpty()){
-//     console.log("Queue is empty");
-//     return null;
-//   }
-//   const removed = this.queue[this.front];
-//   this.queue[this.front] = undefined;
-
-//   // Move front pointer circularly
-//   this.front = (this.front + 1) % this.capacity;
-//   this.size--;
-//   return removed;
-// }
-for (let i = 0; i <= faces.length; i++) {
-  faces[i].textContent = "SQL";
-}
-// cubes.addEventListener('mouseOver', (e)=>{
-
-// })
