@@ -165,10 +165,6 @@ let index = 0;
 function typeLetters() {
   typingElement.textContent = text.slice(0, index);
   index++;
-  let currentSkill = skills[skillIndex];
-  skillIndex = (skillIndex + 1) % skills.length;
-  faceIndex = (faceIndex + 1) % faces.length;
-  faces.textContent = currentSkill;
 
   if (index <= text.length) {
     setTimeout(typeLetters, 300); // typing speed
@@ -184,3 +180,46 @@ function typingSkills() {
 
 setTimeout(typeLetters, 1000); // wait 1.5 sec before typing starts
 setTimeout(typingSkills, 1000);
+
+// Section
+// GSAP + ScrollTrigger setup
+gsap.registerPlugin(ScrollTrigger);
+
+// tilt photo with mouse
+const photoWrap = document.getElementById("photoWrap");
+photoWrap.addEventListener("mousemove", (e) => {
+  const rect = photoWrap.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 .. 0.5
+  const y = (e.clientY - rect.top) / rect.height - 0.5;
+  const rotateY = x * 14; // ↔
+  const rotateX = -y * 10; // ↕
+  photoWrap.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+});
+photoWrap.addEventListener("mouseleave", () => {
+  photoWrap.style.transform = "";
+});
+
+// Flip panels on scroll — animate from rotateX(90deg) -> rotateX(0deg)
+const panels = document.querySelectorAll(".panel");
+panels.forEach((panel, i) => {
+  gsap.fromTo(
+    panel,
+    { rotationX: 90, opacity: 0, transformPerspective: 600 },
+    {
+      rotationX: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 80%",
+        end: "bottom 60%",
+        toggleActions: "play none none reverse",
+        // optional: mark active class while centered
+        onEnter: () => panel.classList.add("active"),
+        onLeaveBack: () => panel.classList.remove("active"),
+      },
+      delay: i * 0.08, // slight stagger
+    }
+  );
+});
