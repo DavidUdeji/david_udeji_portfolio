@@ -179,7 +179,7 @@ function typingSkills() {
 }
 
 setTimeout(typeLetters, 1000); // wait 1.5 sec before typing starts
-setTimeout(typingSkills, 1000);
+setTimeout(typingSkills, 800);
 
 // Section
 // GSAP + ScrollTrigger setup
@@ -200,26 +200,16 @@ photoWrap.addEventListener("mouseleave", () => {
 });
 
 // Flip panels on scroll — animate from rotateX(90deg) -> rotateX(0deg)
-const panels = document.querySelectorAll(".panel");
-panels.forEach((panel, i) => {
-  gsap.fromTo(
-    panel,
-    { rotationX: 90, opacity: 0, transformPerspective: 600 },
-    {
-      rotationX: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: panel,
-        start: "top 80%",
-        end: "bottom 60%",
-        toggleActions: "play none none reverse",
-        // optional: mark active class while centered
-        onEnter: () => panel.classList.add("active"),
-        onLeaveBack: () => panel.classList.remove("active"),
-      },
-      delay: i * 0.08, // slight stagger
-    }
-  );
+
+// Add background when scrolling
+const nav = document.getElementById("navbar");
+const about = document.getElementById("about-section");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    nav.classList.add("scrolled");
+    console.log(window.scrollY);
+    // about.style.transform = "scale(1.02)";
+  } else {
+    nav.classList.remove("scrolled");
+  }
 });

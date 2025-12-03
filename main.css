@@ -29,7 +29,7 @@ li {
 }
 
 /* Navigation Bar */
-nav {
+#navbar {
   width: 100%;
   background: #0b0d0f;
   padding: 20px 5%;
@@ -39,6 +39,14 @@ nav {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+#navbar.scrolled {
+  background: rgba(10, 12, 15, 0.55);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .nav-list {
@@ -80,17 +88,6 @@ nav {
 }
 
 /* nav styling */
-/* NAV container */
-.site-nav {
-  width: 100%;
-  background: #0b0d0f; /* solid dark nav background you requested */
-  padding: 14px 5%;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(6px);
-}
 
 /* nav list alignment */
 .nav-list {
@@ -227,7 +224,7 @@ nav {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  transition-delay: 60ms; /* small delay to avoid accidental flicker */
+  transition-delay: 60ms; /* small delay*/
 }
 
 /* responsive: center nav items vertically on small screens but collapse spacing */
@@ -243,6 +240,14 @@ nav {
   .nav-list .label {
     display: none;
   } /* hide text labels if you prefer icon-only mobile */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+}
+.grid div {
+  grid-row: 1/2;
 }
 
 #hero {
@@ -368,7 +373,7 @@ nav {
 
 .typingSkills {
   font-size: 1.3rem;
-  border-right: 2px solid #0ea5e9;
+
   white-space: nowrap;
   overflow: hidden;
   width: fit-content;
@@ -378,23 +383,28 @@ nav {
 /* container */
 .about-section {
   padding: 80px 6%;
-  background: linear-gradient(180deg, #07080a 0%, #0b0d10 100%);
-  color: #e6eef7;
+  background: linear-gradient(180deg, #07080a 0%, #010416 100%);
+  width: 95%;
+  border-radius: 15px;
+  margin: 20px auto;
+  color: black;
 }
 .about-inner {
-  max-width: 1100px;
+  max-width: 1500px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   align-items: center;
+  background: #fff;
+  border-radius: 15px;
 }
 
 /* LEFT: photo card */
 .photo-wrap {
   width: 100%;
   max-width: 420px;
-  height: 320px;
+  height: 500px;
   margin: 0 auto;
   border-radius: 18px;
   transform-style: preserve-3d;
@@ -411,7 +421,7 @@ nav {
   padding: 12px;
 }
 .photo-wrap:hover {
-  transform: rotateY(12deg) scale(1.02);
+  transform: scale(1.02);
 }
 
 /* image */
@@ -421,7 +431,7 @@ nav {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  transform: translateZ(40px);
+  /* transform: translateZ(40px); */
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
 }
 
@@ -443,41 +453,6 @@ nav {
     );
   filter: blur(40px);
   mix-blend-mode: screen;
-}
-
-/* RIGHT: flip panels */
-.about-right {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.panel {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
-  border-radius: 12px;
-  padding: 18px;
-  transform-origin: top center;
-  transform: rotateX(90deg); /* start folded */
-  opacity: 0;
-  box-shadow: 0 10px 30px rgba(3, 8, 15, 0.6);
-  border: 1px solid rgba(14, 165, 233, 0.07);
-  transition: transform 0.35s ease, box-shadow 0.25s ease;
-}
-/* hover tilt on panels */
-.panel:hover {
-  transform: rotateX(0deg) rotateY(12deg) translateZ(6px);
-  box-shadow: 0 18px 50px rgba(3, 8, 15, 0.7), 0 0 45px rgba(14, 165, 233, 0.06);
-  cursor: default;
-}
-
-/* Glowing border accent when panel is active (we toggle .active in JS via scroll or hover) */
-.panel.active {
-  border: 1px solid rgba(14, 165, 233, 0.6);
-  box-shadow: 0 18px 60px rgba(14, 165, 233, 0.06),
-    0 8px 30px rgba(3, 8, 15, 0.7);
 }
 
 /* responsive */

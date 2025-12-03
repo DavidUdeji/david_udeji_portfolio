@@ -9,15 +9,8 @@
 
 </head>
 <body>
-   <header 
-  class="w-full py-3 text-lg flex items-center justify-between"
-  role="banner"
-  data-is-top="true"
-  data-color-mode="light"
-  data-light-theme="light"
-  data-dark-theme="dark"
->
-<nav class="site-nav" aria-label="Primary">
+  
+<nav  aria-label="Primary" id="navbar">
   <ul class="nav-list" role="menubar">
     <li role="none"><a role="menuitem" href="#about"><span class="icon" aria-hidden="true">
       <!-- sample SVG (user replaceable) -->
@@ -53,8 +46,30 @@
   </ul>
 </nav>
 
-</header>
+ <section id="about-section" class="about-section">
+  <div class="grid">
 
+  
+  <div class="photo-wrap">
+    <img src="./images/David_Picture.jpg" alt="My Photo" class="photo" />
+  </div>
+ 
+  
+
+  <div class="about-inner">
+    <h2>About Me</h2>
+  <li><p>I am software developer who is...</p></li>
+  <li><p>I have worked on the following projects as well as...</p></li>
+  </div>
+ 
+  </div>
+
+ </section>
+
+
+
+
+ 
   
  <!-- Hero Section with 3D Cube -->
 <section id="hero" class="hero">
@@ -70,37 +85,6 @@
 <h1 class="hero-text">Hi, I'm David Udeji</h1>
 <h2 class="typing"></h2>
 
-</section>
- <section id="section" class="about-section">
-  <div class="about-inner">
-    <!-- LEFT: 3D photo card -->
-    <div class="about-left">
-      <div class="photo-wrap" id="photoWrap">
-        <img src="your-photo.jpg" alt="My Photo" class="photo" />
-        <div class="photo-glow"></div>
-      </div>
-    </div>
-
-    <!-- RIGHT: flip panels -->
-    <div class="about-right">
-      <div class="panel" data-order="1">
-        <h3>Who I am</h3>
-        <p>I'm a frontend developer building immersive interfaces and polished UX.</p>
-      </div>
-      <div class="panel" data-order="2">
-        <h3>What I build</h3>
-        <p>3D portfolios, interactive visualizations, efficient UI systems.</p>
-      </div>
-      <div class="panel" data-order="3">
-        <h3>My process</h3>
-        <p>Design — Prototype — Performance — Polish. I care about microinteractions.</p>
-      </div>
-      <div class="panel" data-order="4">
-        <h3>Let's work</h3>
-        <p>Open to freelance & collaboration. I ship quickly and iterate fast.</p>
-      </div>
-    </div>
-  </div>
 </section>
   <section id="projects"></section>
   <section id="skills"></section>
