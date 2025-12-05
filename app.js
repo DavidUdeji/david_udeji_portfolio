@@ -213,3 +213,61 @@ window.addEventListener("scroll", () => {
     nav.classList.remove("scrolled");
   }
 });
+
+// Slide-in on load + IntersectionObserver for panels
+document.addEventListener("DOMContentLoaded", () => {
+  const wrap = document.querySelector(".about-wrap");
+  // initial hidden (prevent visible jump)
+  wrap.classList.add("preload");
+
+  // small timeout to allow paint, then slide-in (2 ways: onload or when visible)
+  requestAnimationFrame(() => {
+    // If you want the whole section to slide in only when visible, use IO instead of immediate
+    wrap.classList.add("slide-in");
+    wrap.classList.remove("preload");
+  });
+
+  // Panels flip when they enter viewport
+  const panels = document.querySelectorAll(".panel");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          // If you want panels to flip back when out of view, uncomment:
+          // entry.target.classList.remove('in-view');
+        }
+      });
+    },
+    { threshold: 0.25, rootMargin: "0px 0px -10% 0px" }
+  );
+
+  panels.forEach((p) => observer.observe(p));
+});
+
+// Tilt card mouse tracking (subtle)
+const card = document.querySelector(".tilt-card");
+if (
+  card &&
+  window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+) {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py = (e.clientY - rect.top) / rect.height;
+
+    const rotateY = (px - 0.5) * 18; // max 18deg
+    const rotateX = (0.5 - py) * 12; // max 12deg
+
+    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(0)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "";
+  });
+
+  // keyboard focus tilt (accessible)
+  card.addEventListener("focus", () => card.classList.add("focused"));
+  card.addEventListener("blur", () => card.classList.remove("focused"));
+}
