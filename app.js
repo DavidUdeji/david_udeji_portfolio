@@ -125,7 +125,7 @@ let faceIndex = 0;
 let skillIndex = 0;
 let typingSpeed = 120;
 let delayBetweenSkills = 1000;
-const text = "Software Developer • Frontend Specialist";
+const text = "Software Developer.";
 let index = 0;
 
 
@@ -145,7 +145,7 @@ function typingSkills() {
   setTimeout(typingSkills, 1000);
 }
 
-setTimeout(typeLetters, 1000); // wait 1.5 sec before typing starts
+setTimeout(typeLetters, 300); // wait 1.5 sec before typing starts
 setTimeout(typingSkills, 800);
 
 // Section
