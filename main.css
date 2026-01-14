@@ -693,7 +693,7 @@ img{
 .carousel-track {
   display: flex;
   gap: 40px;
-  animation: slide 18s linear infinite;
+ 
 }
 
 .project-card {
@@ -763,12 +763,6 @@ img{
 
 .view-btn:hover {
   background: #007acc;
-}
-
-/* AUTO-SLIDE ANIMATION */
-@keyframes slide {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 /* RESPONSIVE */
